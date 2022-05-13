@@ -27,6 +27,7 @@ int main(void)
 	//un_caractere = 'a'; 
 	un_caractere = 97;
 
+
 	printf("La variable un_caractere contient: %c\n", un_caractere);
 
 
