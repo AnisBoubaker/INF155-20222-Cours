@@ -23,6 +23,7 @@
     <ProjectGuid>{EF6BC1B0-E81F-4F36-B1C8-2EDB5F1B53EA}</ProjectGuid>
     <RootNamespace>Expressionscomparaisons</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>3_Expressions_comparaisons</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
