@@ -28,6 +28,5 @@ int main(void)
 	
 
 	surface = pi * rayon * rayon; 
-
 	return EXIT_SUCCESS;
 }
