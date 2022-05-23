@@ -1,9 +1,9 @@
 /*
 Écrire un programme qui fait la somme de tous les entiers entre 1 et une valeur max
-saisie par l'usager. 
+saisie par l'usager.
 
 Par ex.: Si l'usager saisit max = 15
-Le programme doit affichier 120. 
+Le programme doit affichier 120.
 120 = 1 + 2 + 3+ ...+ 15
 
 */
@@ -14,27 +14,14 @@ Le programme doit affichier 120.
 
 int main(void)
 {
-	int max; 
-	int somme; 
-	int courant; 
+	int courant = 1;
+	int somme = 0;
 
-	printf("Max ? ");
-	scanf("%d", &max);
-
-	somme = 0; 
-	courant = 1; 
-
-	while (courant <= max)
+	while (courant < 50)
 	{
-		somme = somme + courant; 
+		somme += courant;
 		courant++;
 	}
-
-	printf("1+ ... + %d = %d\n", max, somme);
-
-
-
-
 
 	system("pause");
 	return 0;
