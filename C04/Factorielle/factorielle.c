@@ -26,6 +26,9 @@ int main(void)
 		compteur++;
 	}*/
 
+	++compteur; 
+	compteur++;
+
 	for (compteur = 1; compteur <= nbr; compteur++)
 	{
 		factorielle = factorielle * compteur;

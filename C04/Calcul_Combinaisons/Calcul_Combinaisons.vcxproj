@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{BD9C83CB-7721-4C7F-8EDA-E9F49C697F0A}</ProjectGuid>
-    <RootNamespace>Saisiedeuxnombres</RootNamespace>
+    <ProjectGuid>{402E7727-D51D-49E6-951F-4A3A223C0406}</ProjectGuid>
+    <RootNamespace>CalculCombinaisons</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
