@@ -86,6 +86,9 @@ int main(void)
 
 	printf("La moyenne des prix saisis: %lf\n", moyenne);
 
+
+
+
 	/*double prix_p0,
 		prix_p1,
 		prix_p2,
