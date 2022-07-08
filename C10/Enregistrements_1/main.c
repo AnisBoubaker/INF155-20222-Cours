@@ -3,34 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "etudiant.h"
 
-#define TAILLE_MAX 100
-#define TAILLE_MAX_CODE_PERM 13
-
-/*struct etudiant //Définir c'est quoi un étudiant, PAS de créer un étudiant
-{
-	char nom[TAILLE_MAX];
-	char prenom[TAILLE_MAX];
-	char code_perm[TAILLE_MAX_CODE_PERM];
-	double intra; 
-	double final; 
-	double tp1;
-	double tp2;
-}; //Ne pas oublier le ; 
-
-//Renomme le type struct etudiant en etudiant
-typedef struct etudiant etudiant; */
-
-typedef struct etudiant 
-{
-	char nom[TAILLE_MAX]; //100 octets (TAILLE_MAX * 1)
-	char prenom[TAILLE_MAX]; //100 octets
-	char code_perm[TAILLE_MAX_CODE_PERM]; //13 octets
-	double intra; //8 octets
-	double final; //8 octets
-	double tp1; //8 octets
-	double tp2; //8 octets
-} etudiant;
 
 typedef struct point3d
 {
@@ -40,8 +14,7 @@ typedef struct point3d
 } point3d;
 
 
-//Déclarations de fonctions
-void afficher_etudiant(etudiant* et); 
+
 
 int main(void)
 {
@@ -77,42 +50,20 @@ int main(void)
 
 	afficher_etudiant(&etudiant1);
 
-	printf("La note de etudiant 1 au TP1 est: %.2lf\n", etudiant1.tp1);
-	printf("Le nom de etudiant 1 est: %s\n", etudiant1.nom);
+	printf("La moyenne de %s %s est: %.2lf\n", 
+		etudiant1.prenom, 
+		etudiant1.nom, 
+		moyenne_etudiant(&etudiant1));
+
+	saisir_etudiant(&etudiant2);
+	afficher_etudiant(&etudiant2);
+	printf("La moyenne de %s %s est: %.2lf\n",
+		etudiant2.prenom,
+		etudiant2.nom,
+		moyenne_etudiant(&etudiant2));
 
 	system("pause");
 
 	return 0;
 }
 
-
-void afficher_etudiant(const etudiant* et)
-{
-	printf("FICHE DE L'ETUDIANT:\n");
-	printf("--------------------\n");
-	printf("Nom: %s\n", (*et).nom);
-	printf("Prenom: %s\n", et->prenom);
-	printf("Code permanent: %s\n", et->code_perm);
-	printf("TP1: %.2lf\n", et->tp1);
-	printf("TP2: %.2lf\n", et->tp2);
-	printf("Intra: %.2lf\n", et->intra);
-	printf("Final: %.2lf\n", et->final);
-
-	//Plus possible puisque et est un pointeur constant
-	//strcpy((*et).nom, "Stark");
-	//(*et).tp1 = 0;
-
-
-}
-
-
-/*
-Écrire une fonction: moyenne_etudiant qui calcule et retourne la moyenne d'un-e 
-etudiant-e. Vous utiliserez les pondérations suivantes: 
-tp1: 15%
-tp2: 15%
-Intra: 30%
-Final: 40%; 
-
-
-*/
