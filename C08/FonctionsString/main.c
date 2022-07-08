@@ -84,7 +84,8 @@ int main(void)
 	}
 
 
-	
+	//Exercice: 
+	//Faire votre propre version de strcmp
 
 	system("pause");
 	return 0; 
