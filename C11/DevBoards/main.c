@@ -12,8 +12,6 @@ int main(void)
 
 	devboard** tousmes_boards = NULL;  //Tableau dynamique d'adresses de devboard
 
-
-
 	tousmes_boards = (devboard**)malloc(50 * sizeof(devboard*));
 	if (tousmes_boards == NULL)
 	{
