@@ -38,6 +38,28 @@ int main(void)
 
 	devboard_afficher(board1);
 
+	//On crée et ajoute trois devboards au tableau
+	tousmes_boards[0] = devboard_init();
+	tousmes_boards[1] = devboard_init();
+	tousmes_boards[2] = devboard_init();
+
+	//Ex.: On peu modifier le nombre de pins du board 1 à 15:
+	tousmes_boards[1]->nb_io_pins = 15;
+
+	//Pour chaque devboard, on demande à l'usager de saisir les informations
+	//pour les 3 boards ajoutés. 
+	for (int i = 0; i < 3; i++)
+	{
+		devboard_saisir(tousmes_boards[i]);
+	}
+
+	//On affiche toutes les informations saisies: 
+	printf("\n\n AFFICHAGE DES BOARDS SAISIS \n\n");
+	for (int i = 0; i < 3; i++)
+	{
+		devboard_afficher(tousmes_boards[i]);
+	}
+
 	system("pause");
 	return 0; 
 

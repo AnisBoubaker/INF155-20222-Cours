@@ -1,10 +1,7 @@
 #include "devboards.h"
 
-/*
-Alloue un devboard et initialise ses champs avec des valeurs
-par défaut. Retourne une adresse non NULL si l'allocation a bien
-fonctionné, ou NULL sinon.
-*/
+#define FFLUSH() do{} while(getchar()!='\n')
+
 devboard* devboard_init(void)
 {
 	devboard* le_board;
@@ -28,13 +25,13 @@ void devboard_afficher(const devboard* board)
 	printf("Architecture: ");
 	switch (board->type_architecture)
 	{
-	case 0:
+	case 1:
 		printf("ESP");
 		break;
-	case 1:
+	case 2:
 		printf("Atmel");
 		break;
-	case 2:
+	case 3:
 		printf("Motorola");
 		break;
 	default:
@@ -42,4 +39,30 @@ void devboard_afficher(const devboard* board)
 	}
 	printf("\n");
 	printf("Nombre de pins: %d\n", board->nb_io_pins);
+}
+
+void devboard_saisir(devboard* board)
+{
+	printf("Saisie des informations d'un devboard: \n");
+	printf("---------------------------------------\n");
+	printf("Numéro de serie: ");
+	fgets(board->num_serie, TAILLE_MAX_NUMSERIE, stdin);
+	board->num_serie[strlen(board->num_serie) - 1] = '\0'; //On enlève le \n 
+
+	//Note: il serait pertinent ici de se créer une fonction du type: 
+	//int saisir_entier(char* message, int min, int max) 
+	//qui fait la boucle de validation. Car on fait 2 fois la même chose...
+	do
+	{
+		printf("Architecture (1: ESP, 2: Atmel, 3: Motorola) : ");
+		scanf("%d", &(board->type_architecture));
+		FFLUSH();
+	} while (board->type_architecture < 1 && board->type_architecture > 3);
+
+	do
+	{
+		printf("Nombre de pins : ");
+		scanf("%d", &(board->nb_io_pins));
+		FFLUSH();
+	} while (board->nb_io_pins <= 0 );
 }
