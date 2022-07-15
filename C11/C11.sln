@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllocDynamique", "AllocDyna
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MoyenneNotes", "MoyenneNotes\MoyenneNotes.vcxproj", "{6799912A-4071-4BF0-99D0-8ACD7B835682}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DevBoards", "DevBoards\DevBoards.vcxproj", "{258A2698-1810-4A8F-8DF0-7C6427A95D1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{6799912A-4071-4BF0-99D0-8ACD7B835682}.Release|x64.Build.0 = Release|x64
 		{6799912A-4071-4BF0-99D0-8ACD7B835682}.Release|x86.ActiveCfg = Release|Win32
 		{6799912A-4071-4BF0-99D0-8ACD7B835682}.Release|x86.Build.0 = Release|Win32
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Debug|x64.ActiveCfg = Debug|x64
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Debug|x64.Build.0 = Debug|x64
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Debug|x86.ActiveCfg = Debug|Win32
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Debug|x86.Build.0 = Debug|Win32
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Release|x64.ActiveCfg = Release|x64
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Release|x64.Build.0 = Release|x64
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Release|x86.ActiveCfg = Release|Win32
+		{258A2698-1810-4A8F-8DF0-7C6427A95D1C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
