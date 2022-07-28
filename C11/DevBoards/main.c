@@ -5,7 +5,6 @@
 #include "devboards.h"
 #include <string.h>
 
-
 int main(void)
 {
 	devboard* board1 = NULL; 
