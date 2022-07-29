@@ -3,21 +3,25 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "mod_capteur.h"
 
-
+#define MAX_JOURS_MESURES 2
+#define MAX_MESURES_PAR_JOUR 2
 
 typedef struct t_province
 {
 	char* nom; //Chaine de caractères (tableau de caractères) de taille dynamique
 	t_capteur** capteurs; //Tableau dynamique de références vers des capteurs
-	int nb_capteur; //Taille effective du tableau de capteurs
+	int nb_capteurs; //Taille effective du tableau de capteurs
 	int max_capteurs; 
 } t_province;
 
 
-t_province* province_init(char* nom);
+t_province* province_init(char* nom, int max_capteurs);
 
 void province_liberer(t_province* province);
+
+void afficher_province(const t_province* prov);
 
 #endif

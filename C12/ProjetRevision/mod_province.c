@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "mod_province.h"
 
 
@@ -28,7 +30,7 @@ t_province* province_init(char* nom, int max_capteurs)
 	}
 
 	nouv_province->max_capteurs = max_capteurs;
-	nouv_province->nb_capteur = 0;
+	nouv_province->nb_capteurs = 0;
 
 
 	return nouv_province;
@@ -36,7 +38,7 @@ t_province* province_init(char* nom, int max_capteurs)
 
 void province_liberer(t_province* province)
 {
-	for (int i = 0; i < province->nb_capteur; i++)
+	for (int i = 0; i < province->nb_capteurs; i++)
 	{
 		//NE PAS FAIRE ÇA car le capteur lui même peut avoir d'autres champs dynamiques
 		//free(province->capteurs[i]);
@@ -45,4 +47,26 @@ void province_liberer(t_province* province)
 	free(province->capteurs);
 	free(province->nom);
 	free(province);
+}
+
+void afficher_province(const t_province* prov)
+{
+	printf("Province: %s\n", prov->nom);
+	printf("Nombre de capteurs: %d\n", prov->nb_capteurs);
+	for (int i = 0; i < prov->nb_capteurs; i++)
+	{
+		printf("** Capteur #%d: **\n", i);
+		printf("Ville: %s\n", prov->capteurs[i]->ville);
+		printf("  Mesures:\n");
+		for (int j = 0; j < MAX_JOURS_MESURES; j++)
+		{
+			for (int k = 0; k < MAX_MESURES_PAR_JOUR; k++)
+			{
+				printf("  T: %.2lf, H: %.2lf, P: %.2lf\n",
+					prov->capteurs[i]->mesures[j][k].temperature,
+					prov->capteurs[i]->mesures[j][k].humidite,
+					prov->capteurs[i]->mesures[j][k].pression);
+			}
+		}
+	}
 }
