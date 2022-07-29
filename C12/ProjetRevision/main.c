@@ -9,23 +9,13 @@ Date: 2022-07-28
 #include <stdio.h>
 #include <stdlib.h>
 #include "mod_mesure.h"
+#include "mod_capteur.h"
 
 
-#define TAILLE_MAX_VILLE 100
 
-typedef struct t_capteur
-{
-	char ville[TAILLE_MAX_VILLE]; 
-	double latitude; 
-	double longitude; 
-	t_mesure mesures[365][10];
-} t_capteur;
 
-typedef struct t_province
-{
-	char* nom; //Chaine de caractères (tableau de caractères) de taille dynamique
-	t_capteur** capteurs; 
-};
+
+
 
 int main(void)
 {
@@ -36,8 +26,7 @@ int main(void)
 
 	t_mesure** tab_mesures;
 
-	tab_mesures = (tab_mesures**)malloc(sizeof(t_mesure*)*100);
-
+	tab_mesures = (t_mesure**)malloc(sizeof(t_mesure*)*100);
 	tab_mesures[0] = mesure_init();
 	tab_mesures[0]->temperature = 35;
 	
@@ -50,6 +39,13 @@ int main(void)
 	ma_mesure.jour = JEUDI;
 
 	mesure_dyn->temperature = 28;
+
+	t_capteur* un_capteur; 
+
+	un_capteur = capteur_init("Montreal");
+
+
+
 
 	system("pause");
 	return EXIT_SUCCESS;

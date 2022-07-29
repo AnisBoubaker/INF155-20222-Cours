@@ -18,25 +18,5 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mod_mesure.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mod_capteur.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mod_province.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mod_mesure.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mod_capteur.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mod_province.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
