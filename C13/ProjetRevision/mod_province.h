@@ -12,7 +12,7 @@
 typedef struct t_province
 {
 	char* nom; //Chaine de caractères (tableau de caractères) de taille dynamique
-	t_capteur** capteurs; //Tableau dynamique de références vers des capteurs
+	t_capteur** capteurs; //Tableau dynamique 1D de références vers des capteurs
 	int nb_capteurs; //Taille effective du tableau de capteurs
 	int max_capteurs; 
 } t_province;

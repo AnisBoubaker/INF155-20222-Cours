@@ -60,3 +60,60 @@ void capteur_liberer(t_capteur* le_capteur)
 	free(le_capteur->ville);
 	free(le_capteur);
 }
+
+int capteur_sauvegarder(const char* nom_fichier, const t_capteur* cap) //(const char nom_fichier[])
+{
+	FILE* mon_fichier;
+	
+	mon_fichier = fopen(nom_fichier, "w");
+	if (mon_fichier == NULL)
+	{
+		printf("Erreur d'ouverture du fichier en écriture!\n");
+		system("pause");
+		return 0;
+	}
+
+	fprintf(mon_fichier, "%s\n", cap->ville);
+	fprintf(mon_fichier, "Lat: %.2lf, Lon: %.2lf\n", cap->latitude, cap->longitude);
+	for (int i = 0; i < cap->nb_lignes_mesures; i++)
+	{
+		for (int j = 0; j < cap->nb_colonnes_mesures; j++)
+		{
+			fprintf(mon_fichier, "T: %.2lf, H: %.2lf, P: %.2lf\n",
+				cap->mesures[i][j].temperature,
+				cap->mesures[i][j].humidite,
+				cap->mesures[i][j].pression);
+		}
+	}
+
+	fclose(mon_fichier);
+	return 1; 
+}
+
+int capteur_sauvegarder_v2(const char* nom_fichier, const t_capteur* cap)
+{
+	FILE* mon_fichier;
+
+	mon_fichier = fopen(nom_fichier, "w");
+	if (mon_fichier == NULL)
+	{
+		printf("Erreur d'ouverture du fichier en écriture!\n");
+		system("pause");
+		return 0;
+	}
+
+	fprintf(mon_fichier, "%d\n", cap->nb_lignes_mesures * cap->nb_colonnes_mesures);
+	for (int i = 0; i < cap->nb_lignes_mesures; i++)
+	{
+		for (int j = 0; j < cap->nb_colonnes_mesures; j++)
+		{
+			fprintf(mon_fichier, "%.2lf\t%.2lf\t%.2lf\n",
+				cap->mesures[i][j].temperature,
+				cap->mesures[i][j].humidite,
+				cap->mesures[i][j].pression);
+		}
+	}
+
+	fclose(mon_fichier);
+	return 1;
+}
