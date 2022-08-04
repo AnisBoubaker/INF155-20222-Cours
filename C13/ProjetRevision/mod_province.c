@@ -3,46 +3,50 @@
 #include "mod_province.h"
 
 
-t_province* province_init(char* nom, int nb_max_capteurs) 
+t_province* province_init(char* nom, int max_capteurs)
 {
-	t_province* nouv_prov = NULL; 
+	t_province* nouv_province; 
 
-	nouv_prov = (t_province*)malloc(sizeof(t_province));
-
-	if (!nouv_prov)
+	nouv_province = (t_province*)malloc(sizeof(t_province));
+	if (!nouv_province)
 	{
-		return NULL; 
-	}
-	nouv_prov->nom = (char*)malloc(sizeof(char) * (strlen(nom) + 1));
-	if (!nouv_prov->nom)
-	{
-		free(nouv_prov);
 		return NULL;
 	}
-	strcpy(nouv_prov->nom, nom);
 
-	nouv_prov->capteurs = (t_capteur**)malloc(sizeof(t_capteur*) * nb_max_capteurs);
-	if (!nouv_prov->capteurs)
+	nouv_province->nom = (char*)malloc(sizeof(char) * (strlen(nom) + 1));
+	if (nouv_province->nom == NULL)
 	{
-		free(nouv_prov->nom);
-		free(nouv_prov);
+		free(nouv_province);
 		return NULL;
 	}
-	nouv_prov->max_capteurs = nb_max_capteurs;
-	nouv_prov->nb_capteurs = 0;
+	strcpy(nouv_province->nom, nom);
+
+	nouv_province->capteurs = (t_capteur**)malloc(sizeof(t_capteur*) * max_capteurs);
+	if (nouv_province->capteurs == NULL)
+	{
+		free(nouv_province->nom);
+		free(nouv_province);
+		return NULL;
+	}
+
+	nouv_province->max_capteurs = max_capteurs;
+	nouv_province->nb_capteurs = 0;
 
 
-	return nouv_prov;
+	return nouv_province;
 }
 
-
-void province_liberer(t_province* prov) {
-	free(prov->nom);
-	for (int i = 0; i < prov->nb_capteurs; i++)
+void province_liberer(t_province* province)
+{
+	for (int i = 0; i < province->nb_capteurs; i++)
 	{
-		capteur_liberer(prov->capteurs[i]);
+		//NE PAS FAIRE ÇA car le capteur lui même peut avoir d'autres champs dynamiques
+		//free(province->capteurs[i]);
+		capteur_liberer(province->capteurs[i]);
 	}
-	free(prov);
+	free(province->capteurs);
+	free(province->nom);
+	free(province);
 }
 
 void afficher_province(const t_province* prov)
@@ -58,7 +62,7 @@ void afficher_province(const t_province* prov)
 		{
 			for (int k = 0; k < MAX_MESURES_PAR_JOUR; k++)
 			{
-				printf("  T: %.2lf, H: %.2lf, P: %.2lf\n", 
+				printf("  T: %.2lf, H: %.2lf, P: %.2lf\n",
 					prov->capteurs[i]->mesures[j][k].temperature,
 					prov->capteurs[i]->mesures[j][k].humidite,
 					prov->capteurs[i]->mesures[j][k].pression);
