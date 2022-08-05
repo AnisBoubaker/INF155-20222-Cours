@@ -24,4 +24,8 @@ void province_liberer(t_province* province);
 
 void afficher_province(const t_province* prov);
 
+void province_trier_capteurs(t_province* prov);
+
+int province_chercher_capteur(const t_province* prov, const char* nom_ville);
+
 #endif

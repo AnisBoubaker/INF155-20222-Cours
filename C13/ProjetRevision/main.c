@@ -21,6 +21,9 @@ int main(void)
 	t_province* ontario;
 	t_capteur* capteur_mtl;
 	t_capteur* capteur_quebec;
+	t_capteur* capteur_wagadougou;
+	t_capteur* capteur_trois_rivieres;
+	t_capteur* capteur_sherbrooke;
 
 	FILE* mon_fichier;
 
@@ -29,6 +32,13 @@ int main(void)
 
 	ontario = province_init("Ontario", 25);
 
+	capteur_wagadougou = capteur_init("Wagadougou", MAX_JOURS_MESURES, MAX_MESURES_PAR_JOUR);
+
+	capteur_trois_rivieres= capteur_init("Trois Rivieres", MAX_JOURS_MESURES, MAX_MESURES_PAR_JOUR);
+
+	capteur_sherbrooke = capteur_init("Sherbrooke", MAX_JOURS_MESURES, MAX_MESURES_PAR_JOUR);
+
+
 	capteur_mtl = capteur_init("Montreal", MAX_JOURS_MESURES, MAX_MESURES_PAR_JOUR);
 	capteur_mtl->latitude = 45.51;
 	capteur_mtl->longitude = 73.55;
@@ -36,6 +46,12 @@ int main(void)
 	
 	capteur_quebec = capteur_init("Ville de Quebec", MAX_JOURS_MESURES, MAX_MESURES_PAR_JOUR);
 
+	province->capteurs[province->nb_capteurs] = capteur_wagadougou;
+	province->nb_capteurs++;
+	province->capteurs[province->nb_capteurs] = capteur_trois_rivieres;
+	province->nb_capteurs++;
+	province->capteurs[province->nb_capteurs] = capteur_sherbrooke;
+	province->nb_capteurs++;
 	province->capteurs[province->nb_capteurs] = capteur_mtl;
 	province->nb_capteurs++;
 	province->capteurs[province->nb_capteurs] = capteur_quebec;
@@ -83,6 +99,9 @@ int main(void)
 	capteur_quebec->mesures[1][1].pression = 102;
 
 
+	
+
+
 	province_liberer(ontario);
 
 	afficher_province(province);
@@ -120,7 +139,7 @@ int main(void)
 	fclose(un_fichier);
 
 
-	un_fichier = fopen("sauvegarde1.txt", "r");
+	un_fichier = fopen("sauvegarde1.txt", "r+");
 	int nb_lignes_fichier; 
 	double moyenne_temp=0, 
 		moyenne_pression=0, 
@@ -148,6 +167,36 @@ int main(void)
 	moyenne_pression /= nb_lignes_fichier;
 
 	printf("Moyennes: T: %lf, H: %lf, P: %lf\n", moyenne_temp, moyenne_humidite, moyenne_pression);
+
+
+	/*
+	On trie et affiche les capteurs de la  province de Quebec
+	*/
+	province_trier_capteurs(province);
+
+	printf("\n\n******* Liste des capteurs du Quebec: *********\n");
+	for (int i = 0; i < province->nb_capteurs; i++)
+	{
+		printf("%s\n", province->capteurs[i]->ville);
+		/*printf("   Latt: %lf, Long: %lf, Nombre de mesures: %d\n",
+			province->capteurs[i]->latitude,
+			province->capteurs[i]->longitude,
+			province->capteurs[i]->nb_lignes_mesures * province->capteurs[i]->nb_colonnes_mesures);*/
+	}
+
+
+	int indice_capteur; 
+
+	indice_capteur = province_chercher_capteur(province, "Sherbrooke");
+	if (indice_capteur != -1)
+	{
+		printf("Capteur trouve a l'indice: %d\n", indice_capteur);
+	}
+	else
+	{
+		printf("Capteur introuvable!");
+	}
+
 
 	system("pause");
 	return 0;

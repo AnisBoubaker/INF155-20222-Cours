@@ -70,3 +70,62 @@ void afficher_province(const t_province* prov)
 		}
 	}
 }
+
+void province_trier_capteurs(t_province* prov)
+{
+	for (int i = prov->nb_capteurs-1; i >= 1; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			/*
+			si le capteir à l'indice j est supérieur au capteur à l'indice
+			j+1, alors permuter les deux capteurs dans le tableau
+			si(tab[j] > tab[j+1]
+			*/
+			/*
+			Rappel:  strcmp retourne une valeur qui peut être: 
+			0: si les deux chaines sont identiques
+			>0: si la première chaine est plus grande que la deuxième
+			<0: si la première chaine est plus petite que la deuxieme
+
+			char ch1[10] = "abcd";
+			char ch2[10] = "ahtf";
+
+			"afth" est plus grande que "abcd"
+
+			strcmp(ch1, ch2)
+
+			*/
+
+
+			if (strcmp(prov->capteurs[j]->ville, prov->capteurs[j + 1]->ville) > 0)
+			{
+				t_capteur* tmp;
+				tmp = prov->capteurs[j];
+				prov->capteurs[j] = prov->capteurs[j + 1];
+				prov->capteurs[j + 1] = tmp;
+			}
+		}
+	}
+}
+
+/*
+Une fonction qui cherche un capteur dans la province par nom de ville.
+Si le capteur se trouve la liste des capteurs de la province, on retourne 
+l'indice du capteur dans le tableau province->capteurs.
+
+Si le capteurs n'existe pas (le nom de la ville n'existe pas) on retourne -1.
+
+*/
+
+int province_chercher_capteur(const t_province* prov, const char* nom_ville)
+{
+	for (int i = 0; i < prov->nb_capteurs; i++)
+	{
+		if (strcmp(prov->capteurs[i]->ville, nom_ville) == 0)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
